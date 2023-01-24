@@ -9,19 +9,19 @@ import org.springframework.stereotype.Service
 class ApiService(
     private val apiClient: ApiClient
 ) : ApiPort {
-    override fun buscaPoCodigoSerie(codigoSerie: String): List<RetornoResponse> {
-        val response = apiClient.buscaPoCodigoSerie(
+    override fun buscaPorCodigoSerie(codigoSerie: String): List<RetornoResponse> {
+        val response = apiClient.buscaPorCodigoSerie(
             codigoSerie = codigoSerie
         )
         return response
     }
 
-    override fun buscaPoDataIniciaFinal(
+    override fun buscaPorDataIniciaFinal(
         codigoSerie: String,
         dataInicial: String,
         dataFinal: String
     ): List<RetornoResponse> {
-        val response = apiClient.buscaPoDataIniciaFinal(
+        val response = apiClient.buscaPorDataIniciaFinal(
             codigoSerie = codigoSerie,
             dataInicial = dataInicial,
             dataFinal = dataFinal
@@ -29,8 +29,8 @@ class ApiService(
         return response
     }
 
-    override fun buscaPoNUtimos(codigoSerie: String, n: String): List<RetornoResponse> {
-        val response = apiClient.buscaPoNUtimos(
+    override fun buscaPorNUtimos(codigoSerie: String, n: String): List<RetornoResponse> {
+        val response = apiClient.buscaPorNUtimos(
             codigoSerie = codigoSerie,
             n = n
         )

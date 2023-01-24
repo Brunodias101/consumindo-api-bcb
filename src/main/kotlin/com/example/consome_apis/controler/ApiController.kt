@@ -1,11 +1,9 @@
 package com.example.consome_apis.controler
 
 import com.example.consome_apis.dto.RetornoResponse
+import com.example.consome_apis.exception.NotFoundException
 import com.example.consome_apis.service.ApiService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("retornoApi")
@@ -14,25 +12,25 @@ class ApiController(
 ) {
 
     @GetMapping("/{codigo_serie}")
-    fun buscaPoCodigoSerie(@PathVariable("codigo_serie") codigoSerie: String): List<RetornoResponse> {
-        return apiService.buscaPoCodigoSerie(codigoSerie)
+    fun buscaPorCodigoSerie(@PathVariable("codigo_serie") codigoSerie: String): List<RetornoResponse>? {
+        return apiService.buscaPorCodigoSerie(codigoSerie)
     }
 
-    @GetMapping("/{codigo_serie}/{data_inicial}/{data_final}")
-    fun buscaPoDataIniciaFinal(
+    @GetMapping("/{codigo_serie}/data")
+    fun buscaPorDataIniciaFinal(
         @PathVariable("codigo_serie") codigoSerie: String,
-        @PathVariable("data_inicial") dataInicial: String,
-        @PathVariable("data_final") dataFinal: String
+        @RequestParam dataInicial: String,
+        @RequestParam dataFinal: String
     ): List<RetornoResponse> {
-        return apiService.buscaPoDataIniciaFinal(codigoSerie, dataInicial, dataFinal)
+        return apiService.buscaPorDataIniciaFinal(codigoSerie, dataInicial, dataFinal)
     }
 
-    @GetMapping("/{codigo_serie}/{N}")
-    fun buscaPoNUtimos(
+    @GetMapping("/{codigo_serie}/filtro")
+    fun buscaPorNUtimos(
         @PathVariable("codigo_serie") codigoSerie: String,
-        @PathVariable("N") n: String
+        @PathVariable n: String
     ): List<RetornoResponse> {
-        return apiService.buscaPoNUtimos(codigoSerie, n)
+        return apiService.buscaPorNUtimos(codigoSerie, n)
     }
 
 }
